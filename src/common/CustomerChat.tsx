@@ -25,7 +25,7 @@ class CustomerChat extends React.PureComponent {
   render() {
     return (
       <ConfigContext.Consumer>
-        {config => (
+        {(config: any) => (
           //@ts-ignore //todo: how to expand div attributes?
           <div
             className="fb-customerchat"
