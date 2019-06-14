@@ -25,5 +25,5 @@
     }
   },
   "include": ["app", "src"],
-  "exclude": ["node_modules"]
+  "exclude": ["server", "node_modules"]
 }
