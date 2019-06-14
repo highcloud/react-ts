@@ -6,7 +6,7 @@
 
 /* @flow */
 
-import UniversalRouter from 'universal-router';
+import UniversalRouter, { Context, Routes } from 'universal-router';
 import { fetchQuery } from 'relay-runtime';
 
 import landing from './landing';
@@ -15,7 +15,7 @@ import misc from './misc';
 import user from './user';
 import news from './news';
 
-const routes = [
+const routes: Routes = [
   ...landing,
   ...legal,
   ...misc,
@@ -27,7 +27,7 @@ const routes = [
   },
 ];
 
-function resolveRoute(ctx) {
+function resolveRoute(ctx: Context) {
   const { route, params, relay } = ctx;
 
   // Allow to load routes on demand
@@ -102,8 +102,9 @@ export default new UniversalRouter(routes, {
   errorHandler,
 });
 
-interface ErrorInfo {
-  code: string,
+interface ErrorInfo extends Error {
+  status?: number,
+  code?: string,
 }
 interface ErrorStatus {
   title: string,
