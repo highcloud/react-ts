@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "checkJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "noUnusedLocals": false,
+    "noImplicitAny": false,
+    "jsx": "preserve",
+    "rootDir": "./app",
+    "baseUrl": "./app",
+    "paths": {
+      "containers": ["./app/containers"],
+      "utils": ["./app/utils"]
+    }
+  },
+  "include": ["app", "src"],
+  "exclude": ["node_modules"]
+}
