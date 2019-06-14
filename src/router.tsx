@@ -77,22 +77,22 @@ function resolveRoute(ctx) {
     const result = route.render(components, data, renderContext);
     return result
       ? {
-          ...result,
-          query: route.query,
-          variables,
-          data,
-          payload,
-          render: props =>
-            route.render(components, props, renderContext).component,
-        }
+        ...result,
+        query: route.query,
+        variables,
+        data,
+        payload,
+        render: props =>
+          route.render(components, props, renderContext).component,
+      }
       : undefined;
   });
 }
 
-function errorHandler(error) {
+function errorHandler(error: ErrorInfo): ErrorStatus {
   return {
     title: error.code === '404' ? 'Page not found' : 'System Error',
-    status: error.code || 500,
+    status: error.code || '500',
     error,
   };
 }
@@ -101,3 +101,12 @@ export default new UniversalRouter(routes, {
   resolveRoute,
   errorHandler,
 });
+
+interface ErrorInfo {
+  code: string,
+}
+interface ErrorStatus {
+  title: string,
+  status: string,
+  error: any,
+}
