@@ -24,5 +24,6 @@
       "autoFix": true
     }
   ],
-  "prettier.eslintIntegration": true
+  "prettier.eslintIntegration": true,
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }
