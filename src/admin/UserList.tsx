@@ -9,7 +9,7 @@
 import React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 
-function UserList({ children }) {
+function UserList({ children }: { children: React.ReactElement }) {
   return <div>{children}</div>;
 }
 
