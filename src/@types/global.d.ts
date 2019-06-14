@@ -9,6 +9,7 @@ interface Window {
 interface NodeModule {
   hot: any;
 }
+declare var module: NodeModule
 
 function nullCheck<T>(val: T) {
   if (!val) throw new Error('null error')
