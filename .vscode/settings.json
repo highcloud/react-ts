@@ -11,5 +11,6 @@
     "**/build/**": true,
     "**/node_modules/**": true,
     "**/__generated__/**": true
-  }
+  },
+  "prettier.eslintIntegration": true
 }
