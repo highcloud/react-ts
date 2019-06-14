@@ -7,7 +7,8 @@
 /* @flow */
 
 import React from 'react';
-import { graphql } from 'relay-runtime';
+//import { graphql } from 'relay-runtime';
+import { graphql } from 'react-relay';
 import Layout from './Layout';
 import UserList from './UserList';
 import StoryList from './StoryList';
