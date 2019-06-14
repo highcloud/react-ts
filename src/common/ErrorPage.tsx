@@ -6,16 +6,16 @@
 
 /* @flow */
 
-import React from 'react';
+import React, { StyleHTMLAttributes } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { withStyles, Theme } from '@material-ui/core/styles';
+import { withStyles, Theme, createStyles, WithStyles } from '@material-ui/core/styles';
 
 import Link from './Link';
 import { useHistory } from '../hooks';
 
 const color = '#607d8b';
 
-const styles = (theme: Theme) => ({
+const styles = (theme: Theme) => createStyles({
   container: {
     position: 'absolute',
     top: 0,
@@ -76,7 +76,7 @@ const styles = (theme: Theme) => ({
   },
 });
 
-type Props = {
+interface Props extends WithStyles {
   error?: Error,
 };
 
