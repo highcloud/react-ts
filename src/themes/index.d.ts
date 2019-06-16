@@ -1,9 +1,11 @@
 import { ThemeOptions, Theme } from '@material-ui/core'
 import { CSSProperties } from '@material-ui/core/styles/withStyles'
+import { TypographyOptions } from '@material-ui/core/styles/createTypography';
 
 declare module "@material-ui/core/styles/createMuiTheme" {
     export interface ThemeOptions {
         mixins?: MixinsOptions;
+        typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
     }
     export interface MixinsOptions extends Partial<Mixins> {
         // ... use interface declaration merging to add custom mixin options
@@ -14,5 +16,11 @@ declare module "@material-ui/core/styles/createMuiTheme" {
 declare module "@material-ui/core/styles/createMixins" {
     export interface Mixins {
         content: CSSProperties
+    }
+}
+
+declare module "@material-ui/core/styles/createTypography" {
+    export interface TypographyOptions {
+        monoFamily?: string;
     }
 }
