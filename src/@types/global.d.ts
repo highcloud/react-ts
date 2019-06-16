@@ -12,7 +12,10 @@ interface NodeModule {
 declare var module: NodeModule
 
 function nullCheck<T>(val: T) {
-  if (!val) throw new Error('null error')
+  if (!val) {
+    const msg = `expect type: ${typeof T}, but got: ${val} `
+    console.log(msg)
+    throw new Error(msg)
+  }
 
-  return NonNullable(val)
 }
