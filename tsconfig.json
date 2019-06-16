@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "noUnusedLocals": false,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "jsx": "preserve",
     "rootDir": "./app",
     "baseUrl": "./app",
