@@ -6,7 +6,7 @@
 
 /* @flow */
 
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, EffectCallback } from 'react';
 import { ReactRelayContext } from 'react-relay';
 import { fb } from './utils';
 
@@ -15,7 +15,7 @@ const history = { location: { pathname: '/' } };
 
 export const ConfigContext = React.createContext({});
 export const HistoryContext = React.createContext(history);
-export const ResetContext = React.createContext(() => {});
+export const ResetContext = React.createContext(() => { });
 
 export function useConfig() {
   return useContext(ConfigContext);
@@ -33,9 +33,9 @@ export function useReset() {
   return useContext(ResetContext);
 }
 
-export function useFacebookEvent(event, callback, deps = []) {
+export function useFacebookEvent(event: fb.FacebookEventType, callback: EffectCallback, deps = []) {
   useEffect(() => {
-    fb(FB => FB.Event.subscribe(event, callback), { async: false });
-    return fb(FB => FB.Event.unsubscribe(event, callback), { async: false });
+    fb((FB: fb.FacebookStatic) => FB.Event.subscribe(event, callback), { async: false });
+    return fb((FB: fb.FacebookStatic) => FB.Event.unsubscribe(event, callback), { async: false });
   }, deps);
 }
