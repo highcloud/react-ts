@@ -6,16 +6,18 @@
 
 /* @flow */
 
-import UniversalRouter, { Context, Routes } from 'universal-router';
-import { fetchQuery } from 'relay-runtime';
+import UniversalRouter, { Context, Routes, RouteContext } from 'universal-router';
+//import { fetchQuery } from 'relay-runtime';
+import { fetchQuery } from 'react-relay';
 
 import landing from './landing';
 import legal from './legal';
 import misc from './misc';
 import user from './user';
 import news from './news';
+import { AppContext } from './@types';
 
-const routes: Routes = [
+const routes: Routes<AppContext, {}> = [
   ...landing,
   ...legal,
   ...misc,
@@ -23,16 +25,17 @@ const routes: Routes = [
   ...news,
   {
     path: '/admin',
-    children: () => import(/* webpackChunkName: 'admin' */ './admin'),
+
+    getchildren: () => import(/* webpackChunkName: 'admin' */ './admin'),
   },
 ];
 
-function resolveRoute(ctx: Context) {
+function resolveRoute(ctx) {
   const { route, params, relay } = ctx;
 
   // Allow to load routes on demand
   if (typeof route.children === 'function') {
-    return route.children().then(x => {
+    return route.children().then(x => { //wjp:question: ambiguity? one name for 2 purposes is anti-pattern
       route.children = x.default;
       return undefined;
     });
@@ -62,7 +65,7 @@ function resolveRoute(ctx: Context) {
     // If API response contains an authentication error,
     // redirect the user to a login page
     const error = ((payload && payload.errors) || [])
-      .map(x => x.originalError || x)
+      .map((x: ErrorInfo) => x.originalError || x)
       .find(x => [401, 403].includes(x.code));
 
     if (error) {
@@ -89,22 +92,23 @@ function resolveRoute(ctx: Context) {
   });
 }
 
-function errorHandler(error: ErrorInfo): ErrorStatus {
+function errorHandler(error, context): ErrorStatus {
   return {
-    title: error.code === '404' ? 'Page not found' : 'System Error',
-    status: error.code || '500',
+    title: error.code === 404 ? 'Page not found' : 'System Error',
+    status: `${error.code || 500}`,
     error,
   };
 }
 
-export default new UniversalRouter(routes, {
+export default new UniversalRouter<AppContext>(routes, {
   resolveRoute,
   errorHandler,
 });
 
 interface ErrorInfo extends Error {
   status?: number,
-  code?: string,
+  code: number,
+  originalError?: ErrorInfo,
 }
 interface ErrorStatus {
   title: string,
