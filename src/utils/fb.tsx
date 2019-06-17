@@ -4,7 +4,7 @@
  * Copyright (c) 2015-present Kriasoft | MIT License
  */
 
-import loadScript from 'load-script';
+import loadScript from 'app/@types/load-script';
 import { canUseDOM } from './env';
 
 let initialized = false;

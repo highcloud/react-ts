@@ -17,13 +17,12 @@
     "noUnusedLocals": false,
     "noImplicitAny": true,
     "jsx": "preserve",
-    "rootDir": "./app",
-    "baseUrl": "./app",
+    "rootDir": "./src",
+    "baseUrl": ".",
     "paths": {
-      "containers": ["./app/containers"],
-      "utils": ["./app/utils"]
+      "app/*": ["src/*"]
     }
   },
-  "include": ["app", "src"],
+  "include": ["src"],
   "exclude": ["server", "node_modules"]
 }
