@@ -16,14 +16,8 @@
     "noEmit": true,
     "noUnusedLocals": false,
     "noImplicitAny": true,
-    "jsx": "preserve",
-    "typeRoots": ["./types", "./node_modules/@types"],
-    "rootDir": "./src",
-    "baseUrl": ".",
-    "paths": {
-      "app/*": ["src/*"]
-    }
+    "typeRoots": ["./types"]
   },
-  "include": ["src"],
-  "exclude": ["server", "node_modules"]
+  "include": ["./index.d.ts"],
+  "exclude": []
 }

@@ -1,0 +1,9 @@
+{
+  "name": "@types/load-script",
+  "version": "1.0.0",
+  "main": "index.d.ts",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {}
+}
