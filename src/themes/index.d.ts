@@ -21,6 +21,7 @@ declare module "@material-ui/core/styles/createMixins" {
 
 declare module "@material-ui/core/styles/createTypography" {
     export interface TypographyOptions {
-        monoFamily?: string;
+        monoFamily?: CSSProperties['fontFamily'];
     }
 }
+
