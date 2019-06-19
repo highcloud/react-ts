@@ -9,9 +9,15 @@
 import React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 
-function Layout({ children }: { children: React.ReactElement }) {
-  return <div>{children}</div>;
+interface Props {
+  children: React.ReactElement,
+  data: any,
 }
+
+function Layout(props: Props) {
+  return <div>{props.children}</div>;
+}
+
 
 export default createFragmentContainer(
   Layout,
