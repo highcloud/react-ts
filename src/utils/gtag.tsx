@@ -8,7 +8,7 @@
 
 import { canUseDOM } from './env';
 
-export function gtag() {
+export function gtag(...params: any[]) {//todo:howto:define type for arguments
   if (canUseDOM && window.dataLayer) {
     window.dataLayer.push(arguments);
   }
