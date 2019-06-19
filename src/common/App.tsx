@@ -6,8 +6,8 @@
 
 /* @flow */
 
-import React from 'react';
-import { QueryRenderer } from 'react-relay';
+import React, { ProviderProps } from 'react';
+import { QueryRenderer, ReadyState } from 'react-relay';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import theme from '../theme';
@@ -16,12 +16,16 @@ import { gtag, getScrollPosition } from '../utils';
 import { ConfigContext, HistoryContext, ResetContext } from '../hooks';
 import { History } from 'history';
 import defaultConfig from '../server/config'
+import { Variables } from 'relay-runtime';
 type Config = typeof defaultConfig
 
 interface Props {
   history: History,
   title: string,
   config: Config,
+  error: Error,
+  variables: Variables,
+  reset: () => void,
 }
 
 class App extends React.PureComponent<Props> {
@@ -66,7 +70,7 @@ class App extends React.PureComponent<Props> {
     this.setState({ error: null });
   };
 
-  renderProps = ({ error, props }) => {
+  renderProps = ({ error, props }: ReadyState) => {
     const err = this.state.error || this.props.error || error;
     return err ? (
       <ErrorPage error={err} onClose={this.resetError} />
