@@ -14,9 +14,18 @@ import theme from '../theme';
 import ErrorPage from './ErrorPage';
 import { gtag, getScrollPosition } from '../utils';
 import { ConfigContext, HistoryContext, ResetContext } from '../hooks';
+import { History } from 'history';
+import defaultConfig from '../server/config'
+type Config = typeof defaultConfig
 
-class App extends React.PureComponent {
-  static getDerivedStateFromError(error) {
+interface Props {
+  history: History,
+  title: string,
+  config: Config,
+}
+
+class App extends React.PureComponent<Props> {
+  static getDerivedStateFromError(error: Error) {
     return { error };
   }
 
@@ -28,7 +37,7 @@ class App extends React.PureComponent {
     this.componentDidRender();
   }
 
-  componentDidCatch(error, info) {
+  componentDidCatch(error: Error, info: object) {
     console.log(error, info); // eslint-disable-line no-console
     gtag('event', 'exception', { description: error.message, fatal: false });
   }
@@ -40,6 +49,7 @@ class App extends React.PureComponent {
     window.document.title = title;
 
     // Track page views
+    // eslint-disable-next-line @typescript-eslint/camelcase
     gtag('config', config.gaTrackingId, { transport_type: 'beacon' });
     // fb(FB => FB.AppEvents.logPageView());
 
@@ -61,8 +71,8 @@ class App extends React.PureComponent {
     return err ? (
       <ErrorPage error={err} onClose={this.resetError} />
     ) : (
-      this.props.render(props || this.props.data)
-    );
+        this.props.render(props || this.props.data)
+      );
   };
 
   render() {
