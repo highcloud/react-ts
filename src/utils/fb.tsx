@@ -7,15 +7,19 @@
 import loadScript from 'load-script';
 import { canUseDOM } from './env';
 
-let initialized = false;
-let queue = [];
+type callback = (FB: fb.FacebookStatic) => void;
 
-export function fb(callback) {
+let initialized = false;
+let queue: callback[] | null = [];
+
+
+export function fb(callback: callback) {
   if (!canUseDOM) {
     return;
   } else if (initialized) {
     callback(window.FB);
   } else {
+    //@ts-ignore
     queue.push(callback);
     if (!window.fbAsyncInit) {
       // https://developers.facebook.com/docs/javascript/reference/FB.init
@@ -29,6 +33,7 @@ export function fb(callback) {
           version: 'v3.2',
         });
         initialized = true;
+        //@ts-ignore
         queue.forEach(cb => cb(window.FB));
         queue = null;
       };
