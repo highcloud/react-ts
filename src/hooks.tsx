@@ -35,7 +35,7 @@ export function useReset() {
 
 export function useFacebookEvent(event: fb.FacebookEventType, callback: EffectCallback, deps = []) {
   useEffect(() => {
-    fb((FB: fb.FacebookStatic) => FB.Event.subscribe(event, callback), { async: false });
+    fb((FB: fb.FacebookStatic) => FB.Event.subscribe(event, callback), { async: false });//todo:warning: fb function second parameter not used
     return fb((FB: fb.FacebookStatic) => FB.Event.unsubscribe(event, callback), { async: false });
   }, deps);
 }

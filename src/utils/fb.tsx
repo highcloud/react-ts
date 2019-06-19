@@ -13,7 +13,7 @@ let initialized = false;
 let queue: callback[] | null = [];
 
 
-export function fb(callback: callback) {
+export function fb(callback: callback, options: { async: boolean }) {
   if (!canUseDOM) {
     return;
   } else if (initialized) {
