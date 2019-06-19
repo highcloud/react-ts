@@ -10,7 +10,7 @@ import React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 
 interface Props {
-  children?: React.ReactElement,
+  children?: React.ReactElement, //todo:warning: ReactChildren?
   data: any,
 }
 

@@ -22,7 +22,7 @@ export default [
         ...UserListAdmin
       }
     `,
-    render: (_, data) => ({
+    render: (_: any, data: any) => ({
       title: 'Manage Users',
       component: (
         <Layout data={data}>
@@ -40,7 +40,7 @@ export default [
         ...StoryListAdmin
       }
     `,
-    render: (_, data) => ({
+    render: (_: any, data: any) => ({
       title: 'Manage Stories',
       component: (
         <Layout data={data}>

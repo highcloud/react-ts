@@ -9,8 +9,13 @@
 import React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 
-function StoryList({ children }: { children: React.ReactChildren }) {
-  return <div>{children}</div>;
+interface Props {
+  children?: React.ReactChildren,
+  data: any,
+}
+
+function StoryList(props: Props) {
+  return <div>{props.children}</div>;
 }
 
 export default createFragmentContainer(
