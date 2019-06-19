@@ -1,5 +1,5 @@
 interface Window {
-  dataLayer: [];
+  dataLayer: any[];
   data: any;
   config: any;
   FB: fb.FacebookStatic;
