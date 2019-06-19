@@ -15,7 +15,8 @@ import legal from './legal';
 import misc from './misc';
 import user from './user';
 import news from './news';
-import { AppContext } from './@types';
+import { AppContext } from './types';
+import { CacheConfig } from 'relay-runtime';
 
 const routes: Routes<AppContext, {}> = [
   ...landing,
@@ -47,7 +48,7 @@ function resolveRoute(ctx) {
   }
 
   // Start fetching data from GraphQL API
-  const cacheConfig = { payload: null };
+  const cacheConfig: CacheConfig = { payload: null };
   const variables = route.variables ? route.variables(params, ctx) : params;
   const dataPromise =
     route.query && fetchQuery(relay, route.query, variables, cacheConfig);
