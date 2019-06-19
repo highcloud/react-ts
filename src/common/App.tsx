@@ -7,7 +7,7 @@
 /* @flow */
 
 import React, { ProviderProps } from 'react';
-import { QueryRenderer, ReadyState } from 'react-relay';
+import { QueryRenderer, ReadyState, QueryRendererProps } from 'react-relay';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import theme from '../theme';
@@ -16,7 +16,7 @@ import { gtag, getScrollPosition } from '../utils';
 import { ConfigContext, HistoryContext, ResetContext } from '../hooks';
 import { History } from 'history';
 import defaultConfig from '../server/config'
-import { Variables } from 'relay-runtime';
+import { Variables, Environment, GraphQLTaggedNode } from 'relay-runtime';
 type Config = typeof defaultConfig
 
 interface Props {
@@ -26,6 +26,9 @@ interface Props {
   error: Error,
   variables: Variables,
   reset: () => void,
+  relay: Environment,
+  query: GraphQLTaggedNode | null,
+  data: any
 }
 
 class App extends React.PureComponent<Props> {
