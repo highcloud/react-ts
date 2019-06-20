@@ -6,19 +6,20 @@
 
 /* @flow */
 
-import React from 'react';
+import React, { Children } from 'react';
 import { useHistory } from '../hooks';
 
-function isLeftClickEvent(event) {
+function isLeftClickEvent(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   return event.button === 0;
 }
 
-function isModifiedEvent(event) {
+function isModifiedEvent(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 }
 
 type Props = {
   onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void,
+
 };
 
 function Link(props: Props) {
@@ -38,6 +39,7 @@ function Link(props: Props) {
     }
 
     event.preventDefault();
+    //@ts-ignore
     history.push(event.currentTarget.getAttribute('href'));
   }
 

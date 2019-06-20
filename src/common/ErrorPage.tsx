@@ -78,7 +78,7 @@ const styles = (theme: Theme) => createStyles({
 
 interface Props extends WithStyles {
   error?: Error,
-  onClose: (event?: MouseEvent) => void,
+  onClose: (event?: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void,
 };
 
 function ErrorPage({ classes: s, ...props }: Props) {
@@ -91,7 +91,8 @@ function ErrorPage({ classes: s, ...props }: Props) {
   function goBack(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     event.preventDefault();
     props.onClose();
-    history.goBack();
+    history.goBack(); //todo:question: history has no goBack()
+
   }
 
   if (props.error) {

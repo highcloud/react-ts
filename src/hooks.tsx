@@ -9,9 +9,12 @@
 import React, { useContext, useEffect, EffectCallback } from 'react';
 import { ReactRelayContext } from 'react-relay';
 import { fb } from './utils';
+import { History, createLocation, createBrowserHistory } from 'history';
 
 // Default history object (for unit tests)
-const history = { location: { pathname: '/' } };
+const history: History = createBrowserHistory();
+const location = createLocation({ pathname: '/' })
+history.push(location)
 
 export const ConfigContext = React.createContext({});
 export const HistoryContext = React.createContext(history);
