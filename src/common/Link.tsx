@@ -6,7 +6,7 @@
 
 /* @flow */
 
-import React, { Children } from 'react';
+import React, { AnchorHTMLAttributes, DetailedHTMLFactory, Children } from 'react';
 import { useHistory } from '../hooks';
 
 function isLeftClickEvent(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
@@ -17,10 +17,9 @@ function isModifiedEvent(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>)
   return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 }
 
-type Props = {
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void,
+interface Props extends AnchorHTMLAttributes<HTMLAnchorElement> {
 
-};
+}
 
 function Link(props: Props) {
   const history = useHistory();
@@ -44,7 +43,7 @@ function Link(props: Props) {
   }
 
   // eslint-disable-next-line jsx-a11y/anchor-has-content
-  return <a {...props} onClick={handleClick} />;
+  return <a {...props} onClick={handleClick} >{Children}</a>;
 }
 
 export default Link;
