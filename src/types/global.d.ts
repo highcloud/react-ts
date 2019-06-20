@@ -10,6 +10,10 @@ interface NodeModule {
   hot: any;
 }
 
+interface Error {
+  status: number,
+}
+
 declare var module: NodeModule
 
 
