@@ -1,8 +1,6 @@
 
-declare module 'relay-runtime' {
-    export interface CacheConfig {
-        payload: any,
-    }
+//module 'relay-runtime' {
+export interface CacheConfig {
+    payload: any,
 }
-
-
+//}
