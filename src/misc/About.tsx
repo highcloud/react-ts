@@ -8,17 +8,21 @@
 
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
+const styles = (theme: Theme) => ({
   root: {
     ...theme.mixins.content,
   },
 });
 
-function About({ classes: s }) {
+interface Props extends WithStyles {
+
+}
+
+function About(props: Props) {
   return (
-    <div className={s.root}>
+    <div className={props.classes.root}>
       <Typography variant="h3" gutterBottom>
         About Us
       </Typography>
