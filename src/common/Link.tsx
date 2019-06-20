@@ -18,13 +18,13 @@ function isModifiedEvent(event) {
 }
 
 type Props = {
-  onClick: ?(event: MouseEvent) => void,
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void,
 };
 
 function Link(props: Props) {
   const history = useHistory();
 
-  function handleClick(event: MouseEvent) {
+  function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     if (props.onClick) {
       props.onClick(event);
     }
