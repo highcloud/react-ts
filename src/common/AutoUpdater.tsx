@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 /**
  * React Starter Kit for Firebase
  * https://github.com/kriasoft/react-firebase-starter
@@ -7,11 +8,13 @@
 /* @flow */
 
 import React from 'react';
-import { graphql, createFragmentContainer, commitMutation } from 'react-relay';
-import type { AutoUpdater_user } from './__generated__/AutoUpdater_user.graphql';
+import { commitMutation, createFragmentContainer, graphql } from 'react-relay';
+//import type { AutoUpdater_user } from './__generated__/AutoUpdater_user.graphql';
+import AutoUpdater_user from './__generated__/AutoUpdater_user.graphql';
 
 type Props = {
-  user: AutoUpdater_user,
+  user: typeof AutoUpdater_user,
+  relay: any, //todo
 };
 
 /**
