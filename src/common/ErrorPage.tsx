@@ -88,7 +88,7 @@ function ErrorPage({ classes: s, ...props }: Props) {
       props.error && props.error.status === 404 ? 'Page Not Found' : 'Error';
   });
 
-  function goBack(event: MouseEvent) {
+  function goBack(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     event.preventDefault();
     props.onClose();
     history.goBack();
