@@ -7,8 +7,9 @@
 /* @flow */
 
 import React from 'react';
-import { graphql } from 'relay-runtime';
+//import { graphql } from 'relay-runtime';
 import Layout from '../common/Layout';
+import { graphql } from 'react-relay';
 
 export default [
   {
