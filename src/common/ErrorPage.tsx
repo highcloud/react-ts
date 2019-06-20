@@ -78,7 +78,7 @@ const styles = (theme: Theme) => createStyles({
 
 interface Props extends WithStyles {
   error?: Error,
-  onClose: (event: MouseEvent) => void,
+  onClose: (event?: MouseEvent) => void,
 };
 
 function ErrorPage({ classes: s, ...props }: Props) {
