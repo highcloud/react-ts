@@ -10,6 +10,12 @@ import React from 'react';
 // import { graphql } from 'relay-runtime';
 import { graphql } from 'react-relay';
 import Layout from '../common/Layout';
+import home from './Home'
+import homeHero from './HomeHero'
+
+type Home = typeof home
+type HomeHero = typeof homeHero
+type ComponentTuple = [Home, HomeHero]
 
 export default [
   {
@@ -23,7 +29,7 @@ export default [
       import(/* webpackChunkName: 'home' */ './Home'),
       import(/* webpackChunkName: 'home' */ './HomeHero'),
     ],
-    render: ([Home, HomeHero], data, { config }) => ({
+    render: ([Home, HomeHero]: ComponentTuple, data, { config }) => ({
       title: config.app.name,
       component: (
         <Layout data={data} hero={<HomeHero />}>

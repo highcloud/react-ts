@@ -10,6 +10,10 @@ import React from 'react';
 //import { graphql } from 'relay-runtime';
 import Layout from '../common/Layout';
 import { graphql } from 'react-relay';
+import about from './About'
+
+type About = typeof about
+type ComponentTuple = [About]
 
 export default [
   {
@@ -20,7 +24,7 @@ export default [
       }
     `,
     components: () => [import(/* webpackChunkName: 'about' */ './About')],
-    render: ([About], data, { config }) => ({
+    render: ([About]: ComponentTuple, data, { config }) => ({
       title: `About Us • ${config.app.name}`,
       component: (
         <Layout data={data}>
