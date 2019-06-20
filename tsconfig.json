@@ -17,13 +17,11 @@
     "noUnusedLocals": false,
     "noImplicitAny": true,
     "jsx": "preserve",
-    "typeRoots": ["./types", "./node_modules/@types"],
-    "rootDir": "./src",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "app/*": ["src/*"]
     }
   },
   "include": ["src"],
-  "exclude": ["server", "node_modules"]
+  "exclude": ["server"]
 }
