@@ -31,7 +31,7 @@ const routes: Routes<AppContext, {}> = [
   },
 ];
 
-function resolveRoute(ctx) {
+function resolveRoute(ctx: RouteContext<AppContext>) {
   const { route, params, relay } = ctx;
 
   // Allow to load routes on demand

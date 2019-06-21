@@ -16,11 +16,16 @@ import createRelay from './createRelay';
 import * as serviceWorker from './serviceWorker';
 import router from './router';
 import { setHistory } from './utils/scrolling';
+import { Context } from 'universal-router';
+import 'app/types'
+import { Location } from 'history';
 
 const container = document.getElementById('root');
 const history = createBrowserHistory();
 
 let relay = createRelay();
+let ctx: Context;
+
 
 setHistory(history);
 
@@ -29,7 +34,7 @@ function reset() {
   window.sessionStorage.removeItem('returnTo');
 }
 
-function render(location) {
+function render(location: Location) {
   router
     .resolve({
       pathname: location.pathname,

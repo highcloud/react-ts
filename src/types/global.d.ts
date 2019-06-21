@@ -1,21 +1,23 @@
+
 interface Window {
-  dataLayer: any[];
-  data: any;
-  config: any;
-  FB: fb.FacebookStatic;
-  fbAsyncInit: () => any;
+    dataLayer: any[];
+    data: any;
+    config: import('./config').ServerConfig;
+    FB: fb.FacebookStatic;
+    fbAsyncInit: () => any;
 }
 
 interface NodeModule {
-  hot: any;
+    hot: any;
 }
 
 interface Error {
-  status: number,
+    status: number,
 }
 
 declare var module: NodeModule
 
+//declare var config: any; // import('knex').Config;
 
 
 

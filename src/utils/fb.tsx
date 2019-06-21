@@ -25,6 +25,7 @@ export function fb(callback: callback, options?: { async: boolean }) {
       // https://developers.facebook.com/docs/javascript/reference/FB.init
       window.fbAsyncInit = () => {
         window.FB.init({
+          //@ts-ignore
           appId: window.config.facebook.appId,
           autoLogAppEvents: true,
           status: true,

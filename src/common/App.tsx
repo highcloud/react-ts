@@ -6,7 +6,7 @@
 
 /* @flow */
 
-import React, { ProviderProps } from 'react';
+import React, { ProviderProps, ReactNode } from 'react';
 import { QueryRenderer, ReadyState, QueryRendererProps } from 'react-relay';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
@@ -16,7 +16,10 @@ import { gtag, getScrollPosition } from '../utils';
 import { ConfigContext, HistoryContext, ResetContext } from '../hooks';
 import { History } from 'history';
 import defaultConfig from '../server/config'
-import { Variables, Environment, GraphQLTaggedNode } from 'relay-runtime';
+import { Variables, Environment, GraphQLTaggedNode, CacheConfig } from 'relay-runtime';
+
+import 'app/types'
+
 type Config = typeof defaultConfig
 
 interface Props {
@@ -28,10 +31,17 @@ interface Props {
   reset: () => void,
   relay: Environment,
   query: GraphQLTaggedNode | null,
-  data: any
+  data: any,
+  payload: any,
+  render: (props: Props | any) => ReactNode, //todo:check
 }
 
 class App extends React.PureComponent<Props> {
+
+  constructor(public props: Props) {
+    super(props);
+
+  }
   static getDerivedStateFromError(error: Error) {
     return { error };
   }
@@ -73,7 +83,7 @@ class App extends React.PureComponent<Props> {
     this.setState({ error: null });
   };
 
-  renderProps = ({ error, props }: ReadyState) => {
+  renderProps = ({ error, props }: ReadyState<['response']>) => {
     const err = this.state.error || this.props.error || error;
     return err ? (
       <ErrorPage error={err} onClose={this.resetError} />
