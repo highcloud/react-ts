@@ -10,8 +10,8 @@
     "prettier"
   ],
   "plugins": [
-    "@typescript-eslint",
-    "flowtype"
+    "@typescript-eslint"
+    //"flowtype"
   ],
   "rules": {
     "no-unused-vars": "off",
