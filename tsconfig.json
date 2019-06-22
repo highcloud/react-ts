@@ -19,6 +19,9 @@
     "pretty": true,
     "jsx": "preserve",
     "baseUrl": "./",
+    "typeRoots": [
+      //"./src/types"
+    ],
     "paths": {
       "app/*": ["src/*"],
       "server/*": ["src/server/*"]

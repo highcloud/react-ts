@@ -13,8 +13,10 @@ import { withStyles } from '@material-ui/core/styles';
 
 import HomeSponsors from './HomeSponsors';
 import HomeStack from './HomeStack';
+import { Theme, WithStyles, createStyles, } from '@material-ui/core';
+import 'app/types/index'
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({
   content: {
     ...theme.mixins.content,
   },
@@ -36,7 +38,7 @@ const styles = theme => ({
   block: {},
 });
 
-function Home({ classes: s }) {
+function Home({ classes: s }: WithStyles) {
   return (
     <>
       <HomeSponsors />

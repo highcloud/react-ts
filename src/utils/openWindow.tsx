@@ -18,8 +18,8 @@ function getWindowFeataures(options: Options = {}) {
   const { screenLeft, screenTop, innerWidth, innerHeight, screen } = window;
   const html = window.document.documentElement;
 
-  const dualScreenLeft: number = screenLeft !== undefined ? screenLeft : screen.left;
-  const dualScreenTop: number = screenTop !== undefined ? screenTop : screen.top;
+  const dualScreenLeft: number = screenLeft !== undefined ? screenLeft : screen.left; //todo:warning: sceen no left
+  const dualScreenTop: number = screenTop !== undefined ? screenTop : screen.top; //todo: same
   const w = innerWidth || html.clientWidth || screen.width;
   const h = innerHeight || html.clientHeight || screen.height;
   interface Config {
@@ -42,7 +42,7 @@ interface Executor {
   reject?: (reason?: any) => void,
 }
 
-export function openWindow(uri: string, { onPostMessage, ...options } = {}) {
+export function openWindow(uri: string, { onPostMessage, ...options }: { onPostMessage?: (event: MessageEvent) => any } = {}) {
   const win = window.open(uri, undefined, getWindowFeataures(options));
 
   let executor: Executor | null

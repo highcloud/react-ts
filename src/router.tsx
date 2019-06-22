@@ -15,10 +15,9 @@ import legal from './legal';
 import misc from './misc';
 import user from './user';
 import news from './news';
-import { AppContext } from './types';
 import { CacheConfig } from 'relay-runtime';
 
-const routes: Routes<AppContext, {}> = [
+const routes: Routes<Context, {}> = [
   ...landing,
   ...legal,
   ...misc,
@@ -31,7 +30,7 @@ const routes: Routes<AppContext, {}> = [
   },
 ];
 
-function resolveRoute(ctx: RouteContext<AppContext>) {
+function resolveRoute(ctx: RouteContext<Context>) {
   const { route, params, relay } = ctx;
 
   // Allow to load routes on demand
@@ -93,7 +92,7 @@ function resolveRoute(ctx: RouteContext<AppContext>) {
   });
 }
 
-function errorHandler(error, context): ErrorStatus {
+function errorHandler(error: Error, context: Context): ErrorStatus {
   return {
     title: error.code === 404 ? 'Page not found' : 'System Error',
     status: `${error.code || 500}`,
@@ -101,7 +100,7 @@ function errorHandler(error, context): ErrorStatus {
   };
 }
 
-export default new UniversalRouter<AppContext>(routes, {
+export default new UniversalRouter<Context>(routes, {
   resolveRoute,
   errorHandler,
 });

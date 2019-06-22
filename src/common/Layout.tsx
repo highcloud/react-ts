@@ -7,14 +7,14 @@
 /* @flow */
 
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 import { graphql, createFragmentContainer } from 'react-relay';
 
 import LayoutToolbar from './LayoutToolbar';
 import LayoutFooter from './LayoutFooter';
 import AutoUpdater from './AutoUpdater';
 
-const styles = theme => ({
+const styles = (theme: Theme) => ({
   '@global': {
     'html, body, #root': {
       height: '100%',
@@ -34,7 +34,12 @@ const styles = theme => ({
   },
 });
 
-function Layout({ classes: s, hero, data, children }) {
+interface Props extends WithStyles {
+  //{ classes: s, hero, data, children }
+  hero: Hero,
+}
+function Layout(props: Props) {
+  const { classes: s } = props
   return (
     <>
       <LayoutToolbar data={data.me} {...!hero && { className: s.background }} />

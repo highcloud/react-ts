@@ -13,11 +13,9 @@ interface NodeModule {
 
 interface Error {
     status: number,
+    code?: number | string,
 }
 
 declare var module: NodeModule
 
 //declare var config: any; // import('knex').Config;
-
-
-
