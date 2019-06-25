@@ -9,13 +9,14 @@
 import React from 'react';
 import QueryString from 'query-string';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, Theme } from '@material-ui/core/styles';
 
 import LoginButton from '../common/LoginButton';
 import { gtag } from '../utils';
 import { useHistory } from '../hooks';
+import { CSSProperties } from '@material-ui/core/styles/withStyles';
 
-const styles = theme => ({
+const styles = (theme: Theme) => ({
   '@global html': {
     height: '100%',
   },
@@ -49,7 +50,7 @@ const styles = theme => ({
   login: {
     marginBottom: theme.spacing.unit * 2,
   },
-});
+} as { [key: string]: CSSProperties });
 
 function Login({ classes: s }) {
   const history = useHistory();
