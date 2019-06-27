@@ -6,25 +6,25 @@
 
 /* @flow */
 
-import React, { AnchorHTMLAttributes, DetailedHTMLFactory, Children } from 'react';
+import React, { AnchorHTMLAttributes, DetailedHTMLFactory, Children, MouseEvent, MouseEventHandler } from 'react';
 import { useHistory } from '../hooks';
 
-function isLeftClickEvent(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+function isLeftClickEvent(event: MouseEvent) {
   return event.button === 0;
 }
 
-function isModifiedEvent(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+function isModifiedEvent(event: MouseEvent) {
   return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 }
 
-interface Props extends AnchorHTMLAttributes<HTMLAnchorElement> {
-
+interface Props {
+  onClick: MouseEventHandler,
 }
 
 function Link(props: Props) {
   const history = useHistory();
 
-  function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+  function handleClick(event: MouseEvent) {
     if (props.onClick) {
       props.onClick(event);
     }
