@@ -9,10 +9,11 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, WithStyles, StyleRules } from '@material-ui/core/styles';
 import { graphql, createFragmentContainer } from 'react-relay';
+import { User } from 'app/types/model';
 
-const styles = {
+const styles: StyleRules = {
   container: {
     maxWidth: 600,
     boxSizing: 'border-box',
@@ -23,8 +24,11 @@ const styles = {
     margin: '2em 0',
   },
 };
-
-function Account({ classes: s, ...props }) {
+interface Props extends WithStyles {
+  user: User,
+}
+function Account(props: Props) {
+  const { classes: s } = props
   return (
     <div className={s.container}>
       <Card className={s.content}>
