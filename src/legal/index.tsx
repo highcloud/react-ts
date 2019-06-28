@@ -7,8 +7,10 @@
 /* @flow */
 
 import React from 'react';
-import { graphql } from 'relay-runtime';
+// import { graphql } from 'relay-runtime';
 import Layout from '../common/Layout';
+import { graphql } from 'react-relay';
+import { RouteContext, Context } from 'universal-router';
 
 export default [
   {
@@ -19,7 +21,7 @@ export default [
       }
     `,
     components: () => [import(/* webpackChunkName: 'terms' */ './Terms')],
-    render: ([Terms], data, { config }) => ({
+    render: ([Terms], data, { config }: RouteContext<Context>) => ({
       title: `Terms of Use • ${config.app.name}`,
       component: (
         <Layout data={data}>

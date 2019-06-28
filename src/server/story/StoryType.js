@@ -21,7 +21,7 @@ import UserType from '../user/UserType';
 import CommentType from './CommentType';
 import { nodeInterface } from '../Node';
 import { dateField } from '../utils';
-import type Context from '../Context';
+import Context from '../Context';
 
 export default new GraphQLObjectType({
   name: 'Story',

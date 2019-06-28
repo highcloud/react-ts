@@ -6,7 +6,7 @@
 
 /* @flow */
 
-import type { Request } from 'express';
+import { Request } from 'express';
 import DataLoader from 'dataloader';
 
 import db from './db';
