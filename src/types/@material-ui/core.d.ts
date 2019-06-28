@@ -13,7 +13,7 @@ declare module '@material-ui/core/styles/createMixins' {
 }
 
 declare module '@material-ui/core/styles/createTypography' {
-    interface TypographyOptions {
+    interface FontStyle {
         monoFamily: CSSProperties['fontFamily'];
         // ... use interface declaration merging to add custom mixins
     }
