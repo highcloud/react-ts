@@ -19,14 +19,17 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, StyleRulesCallback, WithStyles } from '@material-ui/core/styles';
 import { graphql, createFragmentContainer } from 'react-relay';
 
 import Link from '../common/Link';
 import LikeStoryMutation from './mutations/LikeStory';
 import SubmitDialog from './SubmitDialog';
+import { Environment } from 'relay-runtime';
+import { Story, Props as StoryProps, StoryElement, StoryData } from './Story';
+type StoryType = typeof Story
 
-const styles = theme => ({
+const styles: StyleRulesCallback = (theme: Theme) => ({
   root: {
     ...theme.mixins.content,
   },
@@ -70,8 +73,13 @@ const styles = theme => ({
     },
   },
 });
-
-function News({ classes: s, data, ...props }) {
+export interface Props extends WithStyles {
+  data: { stories: StoryData[] },
+  logIn: Function,
+  relay: { environment: Environment },
+}
+function News(props: Props) {
+  const { classes: s, data } = props
   const [isOpen, setOpen] = useState(false);
   const [error, setError] = useState();
   const { stories } = data;
@@ -80,7 +88,7 @@ function News({ classes: s, data, ...props }) {
     setError(null);
   }
 
-  function like(event) {
+  function like(event: React.MouseEvent) {
     event.preventDefault();
     reset();
     const id = event.currentTarget.id;
@@ -121,7 +129,7 @@ function News({ classes: s, data, ...props }) {
         ).
       </Typography>
       <List>
-        {(stories || []).map(x => (
+        {(stories || []).map((x: StoryData) => (
           <ListItem
             className={s.listItem}
             key={x.id}
@@ -141,8 +149,8 @@ function News({ classes: s, data, ...props }) {
                     />
                   </a>
                 ) : (
-                  <Link href={`/news/${x.slug}`}>{x.title}</Link>
-                )
+                    <Link href={`/news/${x.slug}`}>{x.title}</Link>
+                  )
               }
               secondary={
                 <>
