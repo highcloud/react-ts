@@ -7,6 +7,7 @@
 /* @flow */
 
 import { graphql, commitMutation } from 'react-relay';
+import { Environment } from 'relay-runtime';
 
 const mutation = graphql`
   mutation LikeStoryMutation($input: LikeStoryInput!) {
@@ -20,7 +21,7 @@ const mutation = graphql`
   }
 `;
 
-function commit(environment, input) {
+function commit(environment: Environment, input: Model.LikeStoryInput) {
   return new Promise((resolve, reject) => {
     commitMutation(environment, {
       mutation,

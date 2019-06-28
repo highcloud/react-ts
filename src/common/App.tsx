@@ -7,7 +7,7 @@
 /* @flow */
 
 import React, { ProviderProps, ReactNode } from 'react';
-import { QueryRenderer, ReadyState, QueryRendererProps } from 'react-relay';
+import { QueryRenderer, ReadyState } from 'react-relay';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import theme from '../theme';
@@ -17,8 +17,6 @@ import { ConfigContext, HistoryContext, ResetContext } from '../hooks';
 import { History } from 'history';
 import defaultConfig from '../server/config'
 import { Variables, Environment, GraphQLTaggedNode, CacheConfig } from 'relay-runtime';
-
-import 'app/types'
 
 type Config = typeof defaultConfig
 

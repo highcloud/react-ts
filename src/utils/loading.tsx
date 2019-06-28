@@ -5,14 +5,15 @@
  */
 
 /* @flow */
+type Callback = (state: boolean) => void;
 
 let count = 0;
-const listeners = new Set();
+const listeners = new Set<Callback>();
 
-let notification;
+let notification: number;
 
 export default {
-  listen(cb) {
+  listen(cb: Callback) {
     listeners.add(cb);
     return () => listeners.delete(cb);
   },

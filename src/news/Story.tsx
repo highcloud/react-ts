@@ -12,21 +12,27 @@ import Typography from '@material-ui/core/Typography';
 import { graphql, createFragmentContainer } from 'react-relay';
 
 import Link from '../common/Link';
-import { StyleRulesCallback, Theme, withStyles, WithStyles } from '@material-ui/core';
+import { StyleRulesCallback, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 
 const styles: StyleRulesCallback = (theme: Theme) => ({
   root: {
     ...theme.mixins.content,
   },
 });
-interface Props extends WithStyles {
+export interface Props extends WithStyles {
   data: StoryData,
 }
-interface StoryData {
+export interface StoryData {
+  id: string,
   title: string, text: string, isURL: boolean,
+  author: Model.User,
+  slug: string,
+  createdAt: string,
+  pointsCount: number,
+  pointGiven: boolean,
 }
-function Story(props: Props) {
-  const { classes: s, } = props
+export function Story(props: Props) {
+  const { classes: s } = props
   const { title, text, isURL } = props.data
   return (
     <div className={s.root}>
@@ -49,7 +55,7 @@ function Story(props: Props) {
     </div>
   );
 }
-
+export type StoryElement = React.FC<Props>
 export default withStyles(styles)(
   createFragmentContainer(
     Story,

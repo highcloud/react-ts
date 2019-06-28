@@ -6,16 +6,16 @@
 
 /* @flow */
 
-import React, { FC, ReactChildren } from 'react';
-import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
+import React, { FC, ReactChildren, ReactElement } from 'react';
+import { withStyles, Theme, WithStyles, StyleRulesCallback } from '@material-ui/core/styles';
 import { graphql, createFragmentContainer } from 'react-relay';
 
 import LayoutToolbar from './LayoutToolbar';
 import LayoutFooter from './LayoutFooter';
 import AutoUpdater from './AutoUpdater';
-import { User } from 'app/types/model';
+import { StoryData } from 'app/news/Story';
 
-const styles = (theme: Theme) => ({
+const styles: StyleRulesCallback = (theme: Theme) => ({
   '@global': {
     'html, body, #root': {
       height: '100%',
@@ -35,16 +35,17 @@ const styles = (theme: Theme) => ({
   },
 });
 
-interface Props extends WithStyles {
+export interface Props extends WithStyles {
   //{ classes: s, hero, data, children }
-  hero: FC,
+  hero?: FC,
   data: LayoutData,
-  children: ReactChildren,
+  children: React.ReactNode,
 }
-interface LayoutData {
-  me: User,
+export interface LayoutData {
+  me: Model.User,
+  story: StoryData,
 }
-function Layout(props: Props) {
+export function Layout(props: Props) {
   const { classes: s, hero, data, children } = props
   return (
     <>

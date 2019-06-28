@@ -4,7 +4,10 @@ declare global {
     //'relay-runtime' 
 
 }
-export interface CacheConfig {
-    payload: any,
+
+declare module 'relay-runtime' {
+    export interface CacheConfig {
+        payload: any,
+    }
 }
 export const graphql: GraphqlInterface;

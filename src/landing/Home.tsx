@@ -13,10 +13,10 @@ import { withStyles } from '@material-ui/core/styles';
 
 import HomeSponsors from './HomeSponsors';
 import HomeStack from './HomeStack';
-import { Theme, WithStyles, createStyles, } from '@material-ui/core';
-import 'app/types/index'
+import { Theme, WithStyles, createStyles, StyleRulesCallback, } from '@material-ui/core';
+//import 'app/types/index'
 
-const styles = (theme: Theme) => createStyles({
+const styles: StyleRulesCallback = (theme: Theme) => createStyles({
   content: {
     ...theme.mixins.content,
   },
@@ -78,5 +78,6 @@ function Home({ classes: s }: WithStyles) {
     </>
   );
 }
-
+const v1 = withStyles(styles)
+const v2 = v1(Home)
 export default withStyles(styles)(Home);

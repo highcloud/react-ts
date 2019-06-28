@@ -6,9 +6,11 @@
 
 /* @flow */
 
-import React from 'react';
-import { graphql } from 'relay-runtime';
+import React, { Component } from 'react';
+//import { graphql } from 'relay-runtime';
 import Layout from '../common/Layout';
+import { graphql } from 'react-relay';
+import StoryElment from './Story';
 
 export default [
   {
@@ -20,7 +22,7 @@ export default [
         ...News
       }
     `,
-    render: ([News], data, { config }) => ({
+    render: ([News]: any, data: any, { config }: any) => ({
       title: `News • ${config.app.name}`,
       component: (
         <Layout data={data}>
@@ -42,17 +44,17 @@ export default [
         }
       }
     `,
-    render: ([Story], data) => {
+    render: ([Story]: [typeof StoryElment], data: any) => {
       return data.story
         ? {
-            title: data.story.title,
-            component: (
-              <Layout data={data}>
-                <Story data={data.story} />
-              </Layout>
-            ),
-            chunks: ['story'],
-          }
+          title: data.story.title,
+          component: (
+            <Layout data={data}>
+              <Story data={data.story} />{/*todo:classes is required? */}
+            </Layout>
+          ),
+          chunks: ['story'],
+        }
         : null;
     },
   },

@@ -6,20 +6,26 @@
 
 /* @flow */
 
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 import Link from './Link';
 import { useHistory, useReset } from '../hooks';
 import { openWindow } from '../utils';
 
-function LoginLink({ onClick, href, ...props }) {
+interface Props {
+  onClick?: MouseEventHandler,
+  href?: string,
+  [x: string]: any,
+}
+function LoginLink(props: Props) {
+  const { href, onClick } = props
   const history = useHistory();
   const reset = useReset();
   const link = href ? `/login?return=${href}` : '/login';
 
-  function handleClick(event) {
+  function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     event.preventDefault();
-    if (onClick) onClick();
+    if (onClick) onClick(event);
     openWindow(link, {
       onPostMessage({ data }) {
         if (typeof data === 'string' && data === 'login:success') {

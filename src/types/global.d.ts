@@ -14,6 +14,7 @@ interface NodeModule {
 interface Error {
     status: number,
     code?: number | string,
+    originalError?: Error,
 }
 
 declare var module: NodeModule

@@ -12,8 +12,9 @@ import { graphql } from 'react-relay';
 import Layout from './Layout';
 import UserList from './UserList';
 import StoryList from './StoryList';
+import { Context, RouteContext } from 'universal-router';
 
-export default [
+export const list: RouteContext[] = [
   {
     path: '/users',
     query: graphql`
@@ -51,3 +52,5 @@ export default [
     }),
   },
 ];
+
+export default list

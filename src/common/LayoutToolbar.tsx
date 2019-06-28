@@ -7,21 +7,22 @@
 /* @flow */
 
 import cx from 'classnames';
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import { graphql, createFragmentContainer } from 'react-relay';
+import { withStyles, Theme } from '@material-ui/core/styles';
+import { graphql, createFragmentContainer, GraphqlInterface } from 'react-relay';
 
 import Link from './Link';
 import LoginLink from './LoginLink';
 import LayoutToolbarMenu from './LayoutToolbarMenu';
 import { useConfig } from '../hooks';
+import { WithStyles, StyleRulesCallback } from '@material-ui/core';
 
-const styles = theme => ({
+const styles: StyleRulesCallback = (theme: Theme) => ({
   root: {
     backgroundColor: 'transparent',
   },
@@ -43,11 +44,17 @@ const styles = theme => ({
   },
 });
 
-function LayoutToolbar({ classes: s, data: me, className, ...props }) {
-  const [userMenuEl, setUserMenuEl] = useState(null);
+interface Props extends WithStyles {
+  data: Model.User,
+  className?: string,
+}
+function LayoutToolbar(props: Props) {
+  const { classes: s, data: me, className } = props
+  const [userMenuEl, setUserMenuEl] = useState(null as EventTarget | null);
   const { app } = useConfig();
 
-  function openUserMenu(event) {
+  function openUserMenu(event: MouseEvent) {
+    if (!event) return;
     setUserMenuEl(event.currentTarget);
   }
 
@@ -78,7 +85,7 @@ function LayoutToolbar({ classes: s, data: me, className, ...props }) {
               src={me.photoURL}
               alt={me.displayName}
               onClick={openUserMenu}
-              aria-owns={userMenuEl ? 'user-menu' : null}
+              aria-owns={userMenuEl ? 'user-menu' : undefined}
               aria-haspopup="true"
             />
             <LayoutToolbarMenu
@@ -98,10 +105,10 @@ function LayoutToolbar({ classes: s, data: me, className, ...props }) {
             />
           </>
         ) : (
-          <Button className={s.button} color="inherit" component={LoginLink}>
-            Sign In
-          </Button>
-        )}
+            <Button className={s.button} color="inherit" >
+              <LoginLink>Sign In</LoginLink>
+            </Button>
+          )}
       </Toolbar>
     </AppBar>
   );
