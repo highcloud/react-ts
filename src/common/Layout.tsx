@@ -6,13 +6,14 @@
 
 /* @flow */
 
-import React from 'react';
+import React, { FC, ReactChildren } from 'react';
 import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 import { graphql, createFragmentContainer } from 'react-relay';
 
 import LayoutToolbar from './LayoutToolbar';
 import LayoutFooter from './LayoutFooter';
 import AutoUpdater from './AutoUpdater';
+import { User } from 'app/types/model';
 
 const styles = (theme: Theme) => ({
   '@global': {
@@ -36,10 +37,15 @@ const styles = (theme: Theme) => ({
 
 interface Props extends WithStyles {
   //{ classes: s, hero, data, children }
-  hero: Hero,
+  hero: FC,
+  data: LayoutData,
+  children: ReactChildren,
+}
+interface LayoutData {
+  me: User,
 }
 function Layout(props: Props) {
-  const { classes: s } = props
+  const { classes: s, hero, data, children } = props
   return (
     <>
       <LayoutToolbar data={data.me} {...!hero && { className: s.background }} />
