@@ -9,12 +9,13 @@
 
 import React from 'react';
 import { commitMutation, createFragmentContainer, graphql } from 'react-relay';
-//import type { AutoUpdater_user } from './__generated__/AutoUpdater_user.graphql';
-import AutoUpdater_user from './__generated__/AutoUpdater_user.graphql';
+import { Environment } from 'relay-runtime';
+import { User } from 'app/types/model';
 
 type Props = {
-  user: typeof AutoUpdater_user,
-  relay: any, //todo
+  user: User,
+  nextUser?: User,
+  relay: { environment: Environment }, //todo
 };
 
 /**
@@ -26,7 +27,7 @@ class AutoUpdater extends React.Component<Props> {
     this.updateUser();
   }
 
-  shouldComponentUpdate({ user: nextUser }) {
+  shouldComponentUpdate({ user: nextUser }: Props) {
     const { user } = this.props;
     return !(
       (user && user.id) === (nextUser && nextUser.id) &&
